@@ -1,0 +1,663 @@
+{
+  "window_config": {
+    "title": "Survie Kamelott Demo",
+    "width": 1920.0,
+    "height": 1080.0,
+    "background_path": "default/sprites/world/bg.png"
+  },
+  "audio_config" : {
+    "background_path" : "default/audio/background_music_2.mp3",
+    "hit_path": "default/audio/hit_sound.wav",
+    "shoot_path": "default/audio/shoot_sound.wav",
+    "coin_path": "default/audio/coin_sound.wav"
+  },
+  "debug_config": {
+    "collider_circle_path": "default/sprites/debug/collider_circle.png",
+    "collider_rectangle_path": "default/sprites/debug/collider_rect.png"
+  },
+  "player_config": {
+    "sprite_path": "default/sprites/player/knight2.png",
+    "texture_atlas_grid_size": [
+      50.0,
+      48.0
+    ],
+    "texture_atlas_columns": 6,
+    "texture_atlas_rows": 2,
+    
+    "sprite_custom_size_x": 200.0,
+    "sprite_custom_size_y": 192.0,
+
+    "move_speed": 15.0,
+    "damage": 5.0,
+    "health": 20.0,
+    "reload": 500.0,
+    "idle_animation": {
+      "progress": 0.0,
+      "sprite_row_length": 3,
+      "framecount": 3,
+      "atlas_row": 0,
+      "duration": 0.5
+    },
+    "move_animation_side": {
+      "progress": 0.0,
+      "sprite_row_length": 6,
+      "framecount": 6,
+      "atlas_row": 1,
+      "gameframes_until_loop": 10
+    }
+  },
+  "spawner_config": {
+    "spawn_range": 3840.0,
+    "spawn_range_offset": 512.0,
+    "max_spawns_per_frame": 1000
+  },
+  "world_config": {
+      "generated_background_radius_x": 36,
+      "generated_background_radius_y": 36,
+  
+      "background_step_distance": 1000,
+  
+      "noise_scale": 60.0,
+      "tile_size": 256.0
+  },
+  "coin_config": {
+    "sprite_custom_size_x": 128.0,
+    "sprite_custom_size_y": 128.0,
+    "sprite_path": "default/sprites/items/coin_white.png"
+  },
+  "projectile_config": {
+    "sprite_custom_size_x": 64.0,
+    "sprite_custom_size_y": 32.0,
+    "sprite_path": "default/sprites/weapons/projectile_fireball.png",
+    "speed": 30.0,
+    "damage": 5.0,
+    "range": 4096.0,
+    "hit_limit": 1.0
+  },
+  "stages_config": [
+    {
+      "name": "Default",
+      "spawn_phases": [
+        {
+          "duration": 120.0,
+          "spawn_interval": 1.0,
+          "minimum_enemy_amount": 50,
+          "enemies": [
+            {
+              "enemy_index": 0,
+              "spawn_weight": 3.0
+            },
+            {
+              "enemy_index": 1,
+              "spawn_weight": 1.0
+            },
+            {
+              "enemy_index": 2,
+              "spawn_weight": 3.0
+            },
+            {
+              "enemy_index": 3,
+              "spawn_weight": 2.0
+            },
+            {
+              "enemy_index": 4,
+              "spawn_weight": 2.0
+            }
+          ]
+        },
+        {
+          "duration": 10.0,
+          "spawn_interval": 0.1,
+          "minimum_enemy_amount": 0,
+          "enemies": [
+            {
+              "enemy_index": 0,
+              "spawn_weight": 1.0
+            }
+          ],
+          "pattern": {
+            "type": "Grouped",
+            "enemy_amount": 10
+          }
+        },
+        {
+          "duration": 60.0,
+          "spawn_interval": 1.0,
+          "minimum_enemy_amount": 30,
+          "enemies": [
+            {
+              "enemy_index": 0,
+              "spawn_weight": 1.0
+            }
+          ]
+        },
+        {
+          "enemies": [
+            {
+              "enemy_index": 0,
+              "spawn_weight": 1.0
+            }
+          ],
+          "pattern": {
+            "type": "Circle",
+            "spawn_angle_in_degree": 7.0
+          }
+        },
+        {
+          "duration": 60.0,
+          "spawn_interval": 0.1,
+          "minimum_enemy_amount": 50,
+          "enemies": [
+            {
+              "enemy_index": 0,
+              "spawn_weight": 1.0
+            },
+            {
+              "enemy_index": 0,
+              "spawn_weight": 2.0
+            }
+          ]
+        },
+        {
+          "duration": 60.0,
+          "spawn_interval": 0.25,
+          "minimum_enemy_amount": 40,
+          "enemies": [
+            {
+              "enemy_index": 0,
+              "spawn_weight": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Random Level",
+      "spawn_phases": [
+        {
+          "duration": 60.0,
+          "spawn_interval": 0.1,
+          "minimum_enemy_amount": 1000,
+          "enemies": [
+            {
+              "enemy_index": 0,
+              "spawn_weight": 3.0
+            },
+            {
+              "enemy_index": 1,
+              "spawn_weight": 1.0
+            },
+            {
+              "enemy_index": 2,
+              "spawn_weight": 1.0
+            },
+            {
+              "enemy_index": 3,
+              "spawn_weight": 1.0
+            },
+            {
+              "enemy_index": 4,
+              "spawn_weight": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sided Level",
+      "spawn_phases": [
+        {
+          "duration": 15,
+          "spawn_interval": 0.5,
+          "minimum_enemy_amount": 10,
+          "enemies": [
+            {
+              "enemy_index": 2,
+              "spawn_weight": 1.0
+            }
+          ],
+          "pattern": {
+            "type": "Sided",
+            "horizontal": true
+          }
+        },
+        {
+          "duration": 15,
+          "spawn_interval": 0.5,
+          "minimum_enemy_amount": 10,
+          "enemies": [
+            {
+              "enemy_index": 3,
+              "spawn_weight": 1.0
+            }
+          ],
+          "pattern": {
+            "type": "Sided",
+            "horizontal": false
+          }
+        }
+      ]
+    }
+  ],
+  "enemies_config": [
+    {
+        "config_id": 0,
+        "entity_name": "Bat",
+        "size": [
+          160.0,
+          160.0
+        ],
+        "sprite_path": "default/sprites/enemies/bat.png",
+        "texture_atlas_grid_size": [
+          32.0,
+          32.0
+        ],
+        "texture_atlas_columns": 10,
+        "texture_atlas_rows": 5,
+        "sprite_layer": "GroundLevel",
+        "collider_weight": 0.1,
+        "base_damage": 3.0,
+        "damage_interval": 60.0,
+        "move_speed": 10,
+        "health": 10.0,
+        "idle_animation": {
+          "progress": 0.0,
+          "sprite_row_length": 10,
+          "framecount": 10,
+          "atlas_row": 0,
+          "duration": 0.5
+        },
+        "move_animation_side": {
+          "progress": 0.0,
+          "sprite_row_length": 10,
+          "framecount": 10,
+          "atlas_row": 2,
+          "gameframes_until_loop": 10
+        }
+    },
+    {
+      "config_id": 1,
+      "entity_name": "Rat",
+      "size": [
+        160.0,
+        160.0
+      ],
+      "sprite_path": "default/sprites/enemies/rat.png",
+      "texture_atlas_grid_size": [
+        32.0,
+        32.0
+      ],
+      "texture_atlas_columns": 10,
+      "texture_atlas_rows": 5,
+      "sprite_layer": "GroundLevel",
+      "collider_weight": 0.5,
+      "base_damage": 10.0,
+      "damage_interval": 60.0,
+      "move_speed": 5.0,
+      "health": 20.0,
+      "behavior": {
+        "type": "DirectionalMovement"
+      },
+      "idle_animation": {
+        "progress": 0.0,
+        "sprite_row_length": 10,
+        "framecount": 10,
+        "atlas_row": 0,
+        "duration": 0.5
+      },
+      "move_animation_side": {
+        "progress": 0.0,
+        "sprite_row_length": 10,
+        "framecount": 10,
+        "atlas_row": 2,
+        "gameframes_until_loop": 10
+      }
+    },
+    {
+      "config_id": 2,
+      "entity_name": "Minotaur",
+      "size": [
+        288.0,
+        288.0
+      ],
+      "sprite_path": "default/sprites/enemies/minotaur.png",
+      "texture_atlas_grid_size": [
+        48.0,
+        49.0
+      ],
+      "texture_atlas_columns": 10,
+      "texture_atlas_rows": 5,
+      "sprite_layer": "GroundLevel",
+      "collider_weight": 0.5,
+      "base_damage": 20.0,
+      "damage_interval": 60.0,
+      "move_speed": 5.0,
+      "health": 20.0,
+      "idle_animation": {
+        "progress": 0.0,
+        "sprite_row_length": 10,
+        "framecount": 10,
+        "atlas_row": 0,
+        "duration": 0.5
+      },
+      "move_animation_side": {
+        "progress": 0.0,
+        "sprite_row_length": 10,
+        "framecount": 10,
+        "atlas_row": 2,
+        "gameframes_until_loop": 10
+      }
+    },
+    {
+      "config_id": 3,
+      "entity_name": "Eyeball",
+      "size": [
+        128.0,
+        128.0
+      ],
+      "sprite_path": "default/sprites/enemies/eyeball.png",
+      "texture_atlas_grid_size": [
+        32.0,
+        32.0
+      ],
+      "texture_atlas_columns": 8,
+      "texture_atlas_rows": 3,
+      "sprite_layer": "GroundLevel",
+      "collider_weight": 0.5,
+      "base_damage": 1.0,
+      "damage_interval": 60.0,
+      "move_speed": 11.0,
+      "health": 20.0,
+      "idle_animation": {
+        "progress": 0.0,
+        "sprite_row_length": 8,
+        "framecount": 8,
+        "atlas_row": 0,
+        "duration": 0.5
+      },
+      "move_animation_side": {
+        "progress": 0.0,
+        "sprite_row_length": 8,
+        "framecount": 8,
+        "atlas_row": 1,
+        "gameframes_until_loop": 8
+      }
+    },
+    {
+      "config_id": 4,
+      "entity_name": "Death",
+      "size": [
+        200.0,
+        200.0
+      ],
+      "sprite_path": "default/sprites/enemies/death.png",
+      "texture_atlas_grid_size": [
+        100.0,
+        100.0
+      ],
+      "texture_atlas_columns": 12,
+      "texture_atlas_rows": 2,
+      "sprite_layer": "GroundLevel",
+      "collider_weight": 0.5,
+      "base_damage": 1.0,
+      "damage_interval": 60.0,
+      "move_speed": 11.0,
+      "health": 20.0,
+      "idle_animation": {
+        "progress": 0.0,
+        "sprite_row_length": 4,
+        "framecount": 4,
+        "atlas_row": 0,
+        "duration": 0.5
+      },
+      "move_animation_side": {
+        "progress": 0.0,
+        "sprite_row_length": 12,
+        "framecount": 12,
+        "atlas_row": 1,
+        "gameframes_until_loop": 8
+      }
+    }
+  ],
+  "mods_config": [
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "Shield"
+      },
+      "SpritePathWrapper": {
+        "path": "default/sprites/items/shield.png"
+      },
+      "ToolTip": {
+        "tooltip": "A Shield that knocks stuff away even better"
+      },
+      "Price": 10,
+      "Shield": {
+        "unit_size": [
+          64.0,
+          64.0
+        ],
+        "damage": 0.1,
+        "damage_interval": 90.0,
+        "push_duration": 0.2,
+        "push_force": -2000.0,
+        "rotation_distance": 300.0,
+        "revolutions_per_min": 30
+      }
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "DeathBall"
+      },
+      "SpritePathWrapper": {
+        "path": "default/sprites/weapons/deathball.png"
+      },
+      "ToolTip": {
+        "tooltip": "a death ball that makes death"
+      },
+      "Price": 15,
+      "DeathBall": {
+        "unit_size": [
+          128.0,
+          128.0
+        ],
+        "reload": 300.0,
+        "rotation_distance": 200.0,
+        "revolutions_per_min": 50
+      }
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "Radiation"
+      },
+      "SpritePathWrapper": {
+        "path": "sprites/mod_icons/radiation_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "kills the video star"
+      },
+      "Price": 15,
+      "Radiation": {
+        "unit_size": [
+          1024.0,
+          1024.0
+        ],
+        "damage": 8.0,
+        "damage_interval": 90.0
+      }
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "Explosion"
+      },
+      "SpritePathWrapper": {
+        "path": "sprites/mod_icons/explosion_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "Funny tooltip that has a joke with gravity"
+      },
+      "Price": 10,
+      "ExplosionShot": {
+        "explosion_sprite_path": "sprites/explosion.png",
+        "explosion_chance": 0.5,
+        "radius": 500.0,
+        "explosion_time_alive": 0.5
+      }
+    },    
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "Psy Rock"
+      },
+      "SpritePathWrapper": {
+        "path": "default/sprites/mod_icons/psy_rock_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "a psy rock that rocks"
+      },
+      "Price": 15,
+      "PsyRock": {
+        "unit_size": [
+          200.0,
+          200.0
+        ],
+        "damage_interval": 60.0,
+        "teleport_distance": 3000.0,
+        "teleport_proximity_min": 250.0,
+        "teleport_proximity_max": 400.0,
+        "teleport_cooldown": 0.0,
+        "teleport_duration": 0.5
+      }
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "Slime"
+      },
+      "SpritePathWrapper": {
+        "path": "default/sprites/mod_icons/slime_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "a slime helping the player"
+      },
+      "Price": 2,
+      "Slime": {
+        "sprite_path": "default/sprites/slime.png"
+      }
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "Radiation"
+      },
+      "SpritePathWrapper": {
+        "path": "sprites/mod_icons/radiation_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "kills the video star"
+      },
+      "Price": 15,
+      "Radiation": {
+        "unit_size": [
+          1024.0,
+          1024.0
+        ],
+        "damage": 8.0,
+        "damage_interval": 90.0
+      }
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "SplitShot"
+      },
+      "SpritePathWrapper": {
+        "path": "sprites/mod_icons/split_shot_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "projectile splits into 4 projectiles"
+      },
+      "Price": 5,
+      "SplitShot": null
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "CurveShot"
+      },
+      "SpritePathWrapper": {
+        "path": "sprites/mod_icons/curve_shot_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "projectile gets thicc"
+      },
+      "Price": 2,
+      "CurveShot": null
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "GrowShot"
+      },
+      "SpritePathWrapper": {
+        "path": "sprites/mod_icons/grow_shot_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "projectile gets bigger and doller"
+      },
+      "Price": 10,
+      "GrowShot": {
+        "damage_per_second": 3.0,
+        "size_per_second": 2.0
+      }
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "GravityShot"
+      },
+      "SpritePathWrapper": {
+        "path": "sprites/mod_icons/gravity_shot_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "Funny tooltip that has a joke with gravity"
+      },
+      "Price": 2,
+      "GravityShot": {
+        "pulse_time": 0.5,
+        "pulse_timer": 0.5,
+        "radius": 500.0,
+        "push_duration": 0.8,
+        "push_force": 600.0
+      },
+      "AffectProjectileHitLimit": {
+        "operator": "Add",
+        "amount": 3.0
+      }
+    },
+    {
+      "Modification": null,
+      "ModName": {
+        "mod_name": "LightningShot"
+      },
+      "SpritePathWrapper": {
+        "path": "sprites/mod_icons/lightning_icon.png"
+      },
+      "ToolTip": {
+        "tooltip": "electro boom"
+      },
+      "Price": 10,
+      "Lightning": {
+        "chance": 0.2,
+        "radius": 512.0,
+        "jump_count": 2,
+        "lightning_sprite_sheet_path": "default/sprites/weapons/lightning.png",
+        "lightning_width": 128.0,
+        "sprite_time_alive": 0.3
+      }
+    }  
+  ]
+}

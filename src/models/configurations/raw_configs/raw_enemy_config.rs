@@ -1,0 +1,81 @@
+use bevy::prelude::{Assets, AssetServer, Color, Res, ResMut, TextureAtlas, Vec2};
+use serde::Deserialize;
+
+use crate::models::configurations::raw_configs::enemy_behavior::EnemyBehavior;
+use crate::models::spawner::enemy_config::EnemyConfig;
+use crate::models::sprite_layer::SpriteLayer;
+
+use crate::models::animation::idle_animation_component::IdleAnimation;
+use crate::models::animation::walking_animation_component::MoveAnimationSide;
+
+
+#[derive(Default, Deserialize, Debug, Clone)]
+pub struct RawEnemyConfig {
+    pub config_id: usize,
+    pub entity_name: String,
+
+    pub size: Vec2,
+    pub sprite_path: String,
+    pub texture_atlas_grid_size: Vec2,
+    pub texture_atlas_columns: usize,
+    pub texture_atlas_rows: usize,
+    pub sprite_layer: SpriteLayer,
+    #[serde(default)]
+    pub tint: Vec<f32>,
+
+    pub collider_weight: f32,
+
+    pub base_damage: f32,
+    pub damage_interval: f32,
+
+    pub move_speed: f32,
+    pub health: f32,
+
+    #[serde(default)]
+    pub behavior: EnemyBehavior,
+
+    #[serde(default)]
+    pub idle_animation: IdleAnimation,
+
+    #[serde(default)]
+    pub move_animation_side: MoveAnimationSide,
+}
+
+impl RawEnemyConfig {
+    pub fn get_config(
+        &self,
+        asset_server: &Res<AssetServer>,
+        texture_atlases: &mut ResMut<Assets<TextureAtlas>>,
+    ) -> EnemyConfig {
+        let color = if self.tint.len() >= 3 {
+            let mut color = Color::rgb(self.tint[0], self.tint[1], self.tint[2]);
+
+            if self.tint.len() == 4 {
+                color.set_a(self.tint[3]);
+            }
+
+            color
+        } else {
+            Color::default()
+        };
+
+        EnemyConfig {
+            config_id: self.config_id,
+            entity_name: self.entity_name.clone(),
+            size: self.size,
+            texture_atlas: texture_atlases.add(TextureAtlas::from_grid(asset_server.load(&self.sprite_path), self.texture_atlas_grid_size, self.texture_atlas_columns, self.texture_atlas_rows, None, None)),
+            texture_atlas_columns: self.texture_atlas_columns,
+            texture_atlas_rows: self.texture_atlas_rows,
+            sprite_layer: self.sprite_layer,
+            tint: color,
+            collider_weight: self.collider_weight,
+            base_damage: self.base_damage,
+            damage_interval: self.damage_interval,
+            move_speed: self.move_speed,
+            health: self.health,
+            behavior: self.behavior,
+            idle_animation: self.idle_animation.clone(),
+            move_animation_side: self.move_animation_side.clone(),
+        }
+    }
+}
